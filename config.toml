@@ -1,4 +1,4 @@
-baseurl                  = "/"           # Your domain name
+baseurl                  = "https://dinhnn.com"           # Your domain name
 languageCode             = "en-us"
 defaultContentLanguage   = "en"
 isMultilingual           = false
@@ -7,6 +7,9 @@ theme                    = "sam"
 pygmentsStyle            = "monokai"                        # https://help.farbox.com/pygments.html
 pygmentsCodefences       = true
 # googleAnalytics        = ""                               # Tracking code, eg. "UA-111111111-1"
+enableRobotsTXT          = true
+[outputs]
+    home                 = ["HTML", "RSS"]
 
 [params]
     dateform             = "Mon Jan 02, 2006"
@@ -20,13 +23,6 @@ pygmentsCodefences       = true
     images               = ["tn.png"]                       # Image that shows on Twitter cards and Open Graph links to the site
     title                = "Định Nguyễn"
     # rss                = ""
-
-[[params.videoBackground.sources]]
-    source  = "/videos/ocean.mp4"
-    type    = "video/mp4"
-    poster  = "/images/background.png"
-[params.videoBackground]
-    overlay = "rgba(0, 0, 0, 0.4)" # optional
 
 [[params.mainMenu]]
     link = "posts"
