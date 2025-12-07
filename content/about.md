@@ -9,13 +9,12 @@ Xin chào, mình là Định!
 
 
 {{< rawhtml >}}
-<ul>
-    <li style ="display: inline-block;padding: 0 .5em 0 0;margin: 0!important;"><a href="https://twitter.com/ngocdinh" alt="Follow on Twitter"><img alt="Follow on Twitter"
+<ul class="social-badges">
+    <li><a href="https://twitter.com/ngocdinh" alt="Follow on Twitter"><img alt="Follow on Twitter"
                 src="https://img.shields.io/twitter/follow/ngocdinh?label=%40ngocdinh&amp;style=social"></a></li>
-    <li style ="display: inline-block;padding: 0 .5em 0 0;margin: 0!important;"><a href="https://github.com/dinhnguyen" alt="Follow on GitHub"><img alt="Follow on GitHub"
-                src="https://img.shields.io/github/followers/dinhnguyen?label=%40dinhnguyen&amp;style=social"></a>
-    </li>
-    <li style ="display: inline-block;padding: 0 .5em 0 0;margin: 0!important;"><a href="https://www.linkedin.com/in/dinhnguyenngoc/" alt="Find me on LinkedIn"><img alt="Find me on LinkedIn"
-                src="https://img.shields.io/badge/linkedin-Định%20Nguyễn-blue?style=social"></a></li>  
+    <li><a href="https://github.com/dinhnguyen" alt="Follow on GitHub"><img alt="Follow on GitHub"
+                src="https://img.shields.io/github/followers/dinhnguyen?label=%40dinhnguyen&amp;style=social"></a></li>
+    <li><a href="https://www.linkedin.com/in/dinhnguyenngoc/" alt="Find me on LinkedIn"><img alt="Find me on LinkedIn"
+                src="https://img.shields.io/badge/linkedin-Định%20Nguyễn-blue?style=social"></a></li>
 </ul>
 {{< /rawhtml >}}

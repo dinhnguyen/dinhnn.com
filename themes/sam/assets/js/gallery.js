@@ -33,7 +33,7 @@ const Gallery = (selector) => {
       getThumbBoundsFn: keepAspectRatio ? getThumbBoundsFn : undefined,
     };
 
-    gallery = new PhotoSwipe(pswp, PhotoSwipeUI_Default, items, options);
+    const gallery = new PhotoSwipe(pswp, PhotoSwipeUI_Default, items, options);
     gallery.init();
   };
 
