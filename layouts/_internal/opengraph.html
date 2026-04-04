@@ -1,0 +1,20 @@
+{{- $title := .Title | markdownify | plainify -}}
+{{- $ogImage := "" -}}
+{{- if and .IsPage .Title -}}
+  {{- $ogImage = printf "%s/og?title=%s" (strings.TrimRight "/" .Site.BaseURL) ($title | urlquery) -}}
+{{- else -}}
+  {{- with .Site.Params.images -}}
+    {{- $ogImage = index . 0 | absURL -}}
+  {{- end -}}
+{{- end -}}
+<meta property="og:title" content="{{ $title }}" />
+<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}" />
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+{{- with .Site.LanguageCode }}<meta property="og:locale" content="{{ . }}" />{{ end }}
+<meta property="og:site_name" content="{{ .Site.Title }}" />
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{{- end }}
