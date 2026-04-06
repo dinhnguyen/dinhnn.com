@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="{{ "css/main.css" | absURL }}">
 <!-- Custom css -->
-{{ if .Site.IsServer }}
+{{ if hugo.IsServer }}
   {{ range .Site.Params.customCSS -}}
     {{ $style := resources.Get . }}
       <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" crossorigin="anonymous" media="screen">
@@ -14,7 +14,7 @@
 {{ end }}
 
 <!-- PhotoSwipe -->
-{{ if eq .Type "gallery" }}
+{{ if or (eq .Type "gallery") (eq .Type "instagram") }}
 {{ $photoswipe := "css/photoswipe.css" }}
 <link rel="stylesheet" href="{{ $photoswipe | absURL }}">
 {{ $defaultSkin := "css/default-skin.css" }}

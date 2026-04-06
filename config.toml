@@ -36,5 +36,9 @@ enableRobotsTXT          = true
     link = "about"
     text = "who is Định?"
 
+[[params.mainMenu]]
+    link = "instagram"
+    text = "instagram"
+
 [imaging]
     quality = 75

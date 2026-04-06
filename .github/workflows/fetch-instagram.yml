@@ -1,0 +1,69 @@
+name: Fetch Instagram Photos
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"  # mỗi thứ 2, 6AM UTC
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (không commit)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r scripts/requirements.txt
+
+      - name: Restore Instagram session
+        env:
+          INSTAGRAM_SESSION_B64: ${{ secrets.INSTAGRAM_SESSION_B64 }}
+          INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
+        run: |
+          if [ -n "$INSTAGRAM_SESSION_B64" ]; then
+            mkdir -p ~/.config/instaloader
+            echo "$INSTAGRAM_SESSION_B64" | base64 -d > ~/.config/instaloader/session-${INSTAGRAM_USERNAME}
+            echo "Session restored"
+          fi
+
+      - name: Fetch Instagram photos
+        env:
+          INSTAGRAM_USERNAME: ${{ secrets.INSTAGRAM_USERNAME }}
+          INSTAGRAM_SESSION_FILE: $HOME/.config/instaloader/session-${{ secrets.INSTAGRAM_USERNAME }}
+        run: python scripts/fetch_instagram.py
+
+      - name: Check for new files
+        id: check
+        run: |
+          git status --porcelain
+          COUNT=$(git status --porcelain | wc -l | tr -d ' ')
+          echo "changed=$COUNT" >> $GITHUB_OUTPUT
+
+      - name: Commit and push
+        if: steps.check.outputs.changed != '0' && inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          TOTAL=$(cat data/instagram_cursor.json | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('fetched_count',0))")
+          git add content/instagram/ data/instagram_cursor.json
+          git commit -m "chore: fetch instagram photos (total: ${TOTAL})"
+          git push
