@@ -11,6 +11,7 @@ const Gallery = (selector) => {
         w: parseInt(size[0], 10),
         h: parseInt(size[1], 10),
         msrc: img.getAttribute("src"),
+        title: link.getAttribute("data-caption") || "",
       };
     });
   };
@@ -37,17 +38,6 @@ const Gallery = (selector) => {
     gallery.init();
   };
 
-  const onClick = (grid, e) => {
-    const event = e || window.event;
-    event.preventDefault ? event.preventDefault() : (event.returnValue = false);
-
-    const target = event.target || event.srcElement;
-    const index = parseInt(target.getAttribute("data-index"), 10);
-    openGallery(grid, index);
-
-    return false;
-  };
-
   const openGalleryFromHash = (grid) => {
     const hash = new URLSearchParams(window.location.hash.substr(1));
 
@@ -60,9 +50,15 @@ const Gallery = (selector) => {
   };
 
   const grid = document.querySelectorAll(selector)[0];
-  Array.from(grid.getElementsByTagName("img")).forEach(
-    (img) => (img.onclick = (e) => onClick(grid, e))
-  );
+  Array.from(grid.children).forEach((div, index) => {
+    const img = div.getElementsByTagName("img")[0];
+    if (!img) return;
+    img.onclick = (e) => {
+      (e || window.event).preventDefault();
+      openGallery(grid, index);
+      return false;
+    };
+  });
 
   openGalleryFromHash(grid);
 };

@@ -1,6 +1,8 @@
 {{- $title := .Title | markdownify | plainify -}}
 {{- $ogImage := "" -}}
-{{- if and .IsPage .Title -}}
+{{- if .Params.images -}}
+  {{- $ogImage = index .Params.images 0 | absURL -}}
+{{- else if and .IsPage .Title -}}
   {{- $ogImage = printf "%s/og?title=%s" (strings.TrimRight "/" .Site.BaseURL) ($title | urlquery) -}}
 {{- else -}}
   {{- with .Site.Params.images -}}

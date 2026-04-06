@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(hugo:*)",
+      "Bash(echo:*)",
+      "Bash(brew list:*)",
+      "Read(//usr/local/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Bash(/bin/zsh -lc \"which hugo && hugo --source /Users/dinhnguyen/Documents/Works/git/dinhnn.com --quiet; echo Exit:$?\")",
+      "Read(//Users/dinhnguyen/**)",
+      "Bash(brew install:*)",
+      "Bash(/opt/homebrew/bin/hugo --source /Users/dinhnguyen/Documents/Works/git/dinhnn.com --quiet)",
+      "Bash(/opt/homebrew/bin/hugo:*)",
+      "Bash(git -C /Users/dinhnguyen/Documents/Works/git/dinhnn.com log --oneline themes/sam/layouts/partials/head.html)",
+      "Bash(/Users/dinhnguyen/Documents/Works/git/dinhnn.com/layouts/instagram/list.html:*)",
+      "Bash(/Users/dinhnguyen/Documents/Works/git/dinhnn.com/content/instagram/test-post/index.md:*)",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)",
+      "Bash(pip3 install:*)",
+      "Bash(/Users/dinhnguyen/Library/Python/3.9/bin/instaloader --login gyokujo)"
+    ]
+  }
+}
