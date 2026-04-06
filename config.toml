@@ -20,7 +20,7 @@ enableRobotsTXT          = true
 
 # Metadata for Open Graph and Twitter
     description          = "Chém gió, viết nhảm!"               # Max 160 characters show in search results
-    images               = ["tn.png"]                       # Image that shows on Twitter cards and Open Graph links to the site
+    #images               = ["tn.png"]                       # Image that shows on Twitter cards and Open Graph links to the site
     title                = "Định Nguyễn"
     # rss                = ""
 
@@ -28,17 +28,19 @@ enableRobotsTXT          = true
     link = "posts"
     text = "posts"
 
+#[[params.mainMenu]]
+    #link = "gallery"
+    #text = "gallery"
+
 [[params.mainMenu]]
-    link = "gallery"
-    text = "gallery"
+    link = "instagram"
+    text = "instagram"
 
 [[params.mainMenu]]
     link = "about"
     text = "who is Định?"
 
-[[params.mainMenu]]
-    link = "instagram"
-    text = "instagram"
+
 
 [imaging]
     quality = 75
